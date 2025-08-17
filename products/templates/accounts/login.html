@@ -1,0 +1,6 @@
+<h2>Đăng nhập hệ thống</h2>
+<form method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit">Đăng nhập</button>
+</form>

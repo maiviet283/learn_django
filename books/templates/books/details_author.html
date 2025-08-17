@@ -1,0 +1,40 @@
+{% extends "users/base.html" %}
+
+{% block title %}{{ author.name }}{% endblock title %}
+
+{% block body %}
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-lg-6 col-md-8">
+            <div class="card shadow-lg border-0 rounded-4">
+                <div class="card-body p-5">
+                    <h3 class="text-center mb-4 text-primary fw-bold">
+                        <i class="bi bi-person-circle me-2"></i>Thông Tin Tác Giả
+                    </h3>
+
+                    <ul class="list-group list-group-flush mb-4">
+                        <li class="list-group-item">
+                            <strong>Tên:</strong> {{ author.name }}
+                        </li>
+                        <li class="list-group-item">
+                            <strong>Tuổi:</strong> {{ author.age }} tuổi
+                        </li>
+                        <li class="list-group-item">
+                            <strong>Ngày tạo:</strong> {{ author.created_at }}
+                        </li>
+                    </ul>
+
+                    <div class="d-flex justify-content-between">
+                        <a href="{% url 'books:home' %}" class="btn btn-outline-secondary">
+                            <i class="bi bi-arrow-left-circle"></i> Quay lại danh sách
+                        </a>
+                        <a href="{% url 'books:update-author' author.id %}" class="btn btn-primary">
+                            <i class="bi bi-pencil-square"></i> Sửa Thông Tin
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock body %}

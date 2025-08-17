@@ -1,0 +1,82 @@
+{% extends "users/base.html" %}
+{% load static %}
+
+{% block title %}Book List{% endblock title %}
+
+{% block body %}
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-lg-10 col-md-12">
+            <div class="card shadow border-0">
+                <div class="card-body p-4">
+                    <h2 class="text-center text-primary mb-3">📚 Danh sách sách</h2>
+                    <h5 class="text-center text-muted mb-4">
+                        Tổng số sách: <strong>{{ total_book }}</strong>
+                    </h5>
+
+                    {% for author in page_obj %}
+                        <div class="mb-4 p-3 border rounded bg-light">
+                            <h5 class="mb-2">
+                                👤 <strong>
+                                    <a class="text-decoration-none text-dark" href="{% url 'books:details-author' author.pk %}">
+                                        {{ author.pk }} - {{ author.name }} ({{ author.age }} Tuổi)
+                                    </a>
+                                </strong>
+                                <span class="badge bg-success">{{ author.book_count }} cuốn</span>
+                            </h5>
+                            <ol class="ps-3 mb-0">
+                                {% for book in author.books.all %}
+                                    <li>{{ book.title }}</li>
+                                {% empty %}
+                                    <li class="text-muted fst-italic">Không có sách</li>
+                                {% endfor %}
+                            </ol>
+                        </div>
+                    {% empty %}
+                        <p class="text-center text-danger">Không có tác giả nào được tìm thấy.</p>
+                    {% endfor %}
+
+                    <!-- Thanh phân trang -->
+                    {% if page_obj.paginator.num_pages > 1 %}
+                        <nav aria-label="Page navigation" class="mt-4">
+                            <ul class="pagination justify-content-center">
+                                {% if page_obj.has_previous %}
+                                    <li class="page-item">
+                                        <a class="page-link" href="?page=1">&laquo; Đầu</a>
+                                    </li>
+                                    <li class="page-item">
+                                        <a class="page-link" href="?page={{ page_obj.previous_page_number }}">Trước</a>
+                                    </li>
+                                {% endif %}
+
+                                {% for num in page_obj.paginator.page_range %}
+                                    {% if num == page_obj.number %}
+                                        <li class="page-item active"><span class="page-link">{{ num }}</span></li>
+                                    {% elif num > page_obj.number|add:'-3' and num < page_obj.number|add:'3' %}
+                                        <li class="page-item"><a class="page-link" href="?page={{ num }}">{{ num }}</a></li>
+                                    {% endif %}
+                                {% endfor %}
+
+                                {% if page_obj.has_next %}
+                                    <li class="page-item">
+                                        <a class="page-link" href="?page={{ page_obj.next_page_number }}">Sau</a>
+                                    </li>
+                                    <li class="page-item">
+                                        <a class="page-link" href="?page={{ page_obj.paginator.num_pages }}">Cuối &raquo;</a>
+                                    </li>
+                                {% endif %}
+                            </ul>
+                        </nav>
+                    {% endif %}
+
+                    <div class="text-center mt-4">
+                        <a href="{% url 'home:index' %}" class="btn btn-outline-primary">
+                            ← Về trang chủ
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock body %}

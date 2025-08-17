@@ -1,0 +1,41 @@
+<h2>Danh sách sản phẩm</h2>
+
+{% if is_admin %}
+    <p>Chào <strong>Admin</strong></p>
+{% elif is_staff %}
+    <p>Chào <strong>Nhân viên</strong></p>
+{% elif is_customer %}
+    <p>Chào <strong>Khách hàng</strong></p>
+{% endif %}
+
+{% if user.is_authenticated %}
+    <form action="{% url 'products:logout' %}" method="post" style="display:inline;">
+        {% csrf_token %}
+        <button type="submit">Đăng xuất</button>
+    </form>
+{% endif %}
+
+
+<table border="1" cellpadding="5">
+    <tr>
+        <th>Tên</th>
+        <th>Giá</th>
+        <th>Tồn kho</th>
+        <th>Hành động</th>
+    </tr>
+    {% for product in products %}
+    <tr>
+        <td>{{ product.name }}</td>
+        <td>{{ product.price }}</td>
+        <td>{{ product.stock }}</td>
+        <td>
+            {% if perms.products.change_product %}
+                <a href="{% url 'products:edit_product' product.pk %}">Sửa</a>
+            {% endif %}
+            {% if perms.products.delete_product %}
+                <a href="{% url 'products:delete_product' product.pk %}">Xoá</a>
+            {% endif %}
+        </td>
+    </tr>
+    {% endfor %}
+</table>

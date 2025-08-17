@@ -1,0 +1,9 @@
+<h2>Xác nhận xoá sản phẩm</h2>
+
+<p>Bạn có chắc chắn muốn xoá "{{ product.name }}" không?</p>
+
+<form method="post">
+    {% csrf_token %}
+    <button type="submit">Xoá</button>
+    <a href="{% url 'products:product_list' %}">Huỷ</a>
+</form>
