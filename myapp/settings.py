@@ -101,28 +101,45 @@ USE_I18N = True
 USE_TZ = True
 
 
-# Static files (CSS, JavaScript, Images)
+# ---------------- STATIC FILES ---------------- #
+# URL để load static (CSS, JS, Images)
+STATIC_URL = '/static/'
 
-STATIC_URL = 'static/'
+# Thư mục static chung ngoài các app
+STATICFILES_DIRS = [
+    BASE_DIR / "static",   # VD: project_root/static/
+]
+
+# Thư mục chứa tất cả static sau khi collectstatic (production)
+STATIC_ROOT = BASE_DIR / "staticfiles"
+
+
+# ---------------- MEDIA FILES ---------------- #
+# URL để load media (ảnh, file do user upload)
+MEDIA_URL = '/media/'
+
+# Nơi lưu trữ file upload
+MEDIA_ROOT = BASE_DIR / "media"
+
 
 # Default primary key field type
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 REST_FRAMEWORK = {
-    'DEFAULT_AUTHENTICATION_CLASSES': (
-        'rest_framework_simplejwt.authentication.JWTAuthentication',
+    "DEFAULT_AUTHENTICATION_CLASSES": (
+        "rest_framework_simplejwt.authentication.JWTAuthentication",
     ),
-    'DEFAULT_PERMISSION_CLASSES': (
-        'rest_framework.permissions.IsAuthenticated',
+    "DEFAULT_PERMISSION_CLASSES": (
+        "rest_framework.permissions.IsAuthenticated",
     ),
-    'DEFAULT_RENDERER_CLASSES': (
-        'utils.renderers.CustomRenderer',  
-        # Thêm dòng này để áp dụng custom format
-        'rest_framework.renderers.BrowsableAPIRenderer',  
-        # Giữ nếu bạn vẫn muốn giao diện duyệt
+    "DEFAULT_RENDERER_CLASSES": (
+        "utils.renderers.CustomRenderer",
+        "rest_framework.renderers.BrowsableAPIRenderer",
     ),
+    "EXCEPTION_HANDLER": "utils.exceptions.custom_exception_handler",
 }
+
 
 CACHES = {
     "default": {

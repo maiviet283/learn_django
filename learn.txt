@@ -1,9 +1,15 @@
 pip freeze > requirements.txt
 celery -A myapp worker --pool=solo --loglevel=info
 
-Thư viện	Vai trò chính	Công dụng nổi bật
 NumPy	Xử lý mảng, tính toán số học nhanh	Làm việc với dữ liệu lớn, toán học vector/matrix nhanh
 
 SciPy	Tính toán khoa học nâng cao	Giải phương trình, tối ưu, xử lý tín hiệu, thống kê
 
 Numba	Tăng tốc code Python JIT	Biên dịch code Python để chạy nhanh hơn nhiều
+
+
+oop
+
+nginx
+gunicorn
+websocket

@@ -1,13 +1,55 @@
+# ======================================
 # Python
+# ======================================
 __pycache__/
 *.py[cod]
 *$py.class
 
-# Virtual environment (venv)
+# ======================================
+# Virtual Environments
+# ======================================
 venv/
 .venv/
 env/
 ENV/
 
+# ======================================
+# Django Stuff
+# ======================================
+*.log
+*.pot
+*.pyc
+db.sqlite3
+db.sqlite3-journal
+
+# Static & Media (nếu build/generate)
+staticfiles/
+media/
+
+# Cache
+*.cache
+*.mo
+*.pot
+*.pyc
+*.pyo
+*.pyd
+*.log
+*.sql
+*.sqlite3
+*.db
+.DS_Store
+
+# ======================================
+# IDE / Editors
+# ======================================
 .vscode/
 .idea/
+*.swp
+*.swo
+
+# ======================================
+# OS generated
+# ======================================
+Thumbs.db
+ehthumbs.db
+Desktop.ini
