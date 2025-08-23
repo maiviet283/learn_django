@@ -2,11 +2,8 @@ pip freeze > requirements.txt
 celery -A myapp worker --pool=solo --loglevel=info
 
 NumPy	Xử lý mảng, tính toán số học nhanh	Làm việc với dữ liệu lớn, toán học vector/matrix nhanh
-
 SciPy	Tính toán khoa học nâng cao	Giải phương trình, tối ưu, xử lý tín hiệu, thống kê
-
 Numba	Tăng tốc code Python JIT	Biên dịch code Python để chạy nhanh hơn nhiều
-
 
 oop
 
@@ -14,4 +11,15 @@ nginx
 gunicorn
 websocket
 
-hỏi lương
+
+200 OK: thành công
+201 Created: tạo mới thành công
+204 No Content: xóa thành công
+400 Bad Request: request không hợp lệ (validate lỗi)
+401 Unauthorized: chưa login hoặc token sai
+403 Forbidden: không đủ quyền
+404 Not Found: không tìm thấy resource
+409 Conflict: dữ liệu conflict (vd: email đã tồn tại)
+500 Internal Server Error: lỗi server
+
+aigal

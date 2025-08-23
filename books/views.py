@@ -81,7 +81,7 @@ def book_list(request):
         print(f"⚡ Lấy authors từ cache cho trang {page_number}")
 
     # 6. Ví dụ chạy task Celery (async)
-    print("📨 Task Celery:", slow_add.delay(3, 4))
+    # print("📨 Task Celery:", slow_add.delay(3, 4))
 
     return render(request, 'books/home.html', {
         "page_obj": page_obj,
@@ -108,7 +108,7 @@ def details_author(request, id):
         else:
             print(f"⚡ Lấy author từ Redis: {author_data['name']}")
 
-        print("detail = ",slow_add.delay(1,1))
+        # print("detail = ",slow_add.delay(1,1))
 
         return render(request, 'books/details_author.html', {
             'author': author_data

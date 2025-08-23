@@ -36,6 +36,7 @@ INSTALLED_APPS = [
     'books',
     'users',
     'home',
+    'customer',
 ]
 
 LOGOUT_REDIRECT_URL = '/products/login/'
@@ -152,12 +153,12 @@ CACHES = {
 }
 
 
-# CELERY dùng Redis DB 0 để queue task
-CELERY_BROKER_URL = 'redis://127.0.0.1:6379/0'
+# # CELERY dùng Redis DB 0 để queue task
+# CELERY_BROKER_URL = 'redis://127.0.0.1:6379/0'
 
-# CELERY lưu kết quả vào Redis DB 2 (hoặc bỏ qua nếu không cần lưu kết quả)
-CELERY_RESULT_BACKEND = None
+# # CELERY lưu kết quả vào Redis DB 2 (hoặc bỏ qua nếu không cần lưu kết quả)
+# CELERY_RESULT_BACKEND = None
 
-CELERY_TASK_RESULT_EXPIRES = 60
-CELERY_ACCEPT_CONTENT = ['json']
-CELERY_TASK_SERIALIZER = 'json'
+# CELERY_TASK_RESULT_EXPIRES = 60
+# CELERY_ACCEPT_CONTENT = ['json']
+# CELERY_TASK_SERIALIZER = 'json'
