@@ -5,11 +5,12 @@ NumPy	Xử lý mảng, tính toán số học nhanh	Làm việc với dữ liệ
 SciPy	Tính toán khoa học nâng cao	Giải phương trình, tối ưu, xử lý tín hiệu, thống kê
 Numba	Tăng tốc code Python JIT	Biên dịch code Python để chạy nhanh hơn nhiều
 
-oop
 
 nginx
 gunicorn
+aigal
 websocket
+docker
 
 
 200 OK: thành công
@@ -21,5 +22,3 @@ websocket
 404 Not Found: không tìm thấy resource
 409 Conflict: dữ liệu conflict (vd: email đã tồn tại)
 500 Internal Server Error: lỗi server
-
-aigal
