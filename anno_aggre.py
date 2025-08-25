@@ -17,22 +17,18 @@ def main():
         .annotate(count_book=Count('books'))
         .filter(count_book__gt=0)
         .prefetch_related(
-            Prefetch('books', queryset=Book.objects.only('title', 'author'))
+            Prefetch('books', queryset=Book.objects.only('title', 'author'), to_attr='pub_books')
         )
         .order_by('-count_book')
     )
 
     for author in authors:
         print(f"{author.name} co {author.count_book} cuon sach")
-        for book in author.books.all():
+        for book in author.pub_books:
             print(f" ----{book.title}")
 
     total_book = Book.objects.aggregate(total=Count('id'))['total']
     print(f'Total book = {total_book}')
-
-    print("\n=== SQL Queries ===")
-    for q in connection.queries:
-        print(q["sql"])
 
     print(f"\nTotal queries SQL = {len(connection.queries)}")
 
