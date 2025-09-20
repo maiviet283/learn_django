@@ -4,6 +4,7 @@ from django.contrib.auth.views import LoginView
 from django.urls import reverse_lazy
 from .models import Product
 
+
 # Trang login riêng
 class CustomLoginView(LoginView):
     template_name = 'accounts/login.html'
@@ -11,12 +12,13 @@ class CustomLoginView(LoginView):
     def get_success_url(self):
         user = self.request.user
         if user.groups.filter(name='Admin').exists():
-            return reverse_lazy('products:product_list')  # Admin về danh sách sản phẩm
+            return reverse_lazy('products:product_list')  
         elif user.groups.filter(name='Nhân viên').exists():
             return reverse_lazy('products:product_list')
         elif user.groups.filter(name='Khách hàng').exists():
             return reverse_lazy('products:product_list')  # Hoặc trang riêng
         return reverse_lazy('products:product_list')  # fallback
+
 
 # Danh sách sản phẩm
 @login_required

@@ -1,16 +1,21 @@
 import os
+import sys
 import django
 from django.db import connection, reset_queries
 
-# Thiết lập môi trường Django
+CURRENT_FILE = os.path.abspath(__file__)
+PROJECT_ROOT = os.path.dirname(os.path.dirname(CURRENT_FILE))
+
+if PROJECT_ROOT not in sys.path:
+    sys.path.append(PROJECT_ROOT)
+
 os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'myapp.settings')
 django.setup()
 
 from books.models import Author, Book
 
 def main():
-    reset_queries()  # Xóa danh sách các truy vấn SQL trước đó (dùng để theo dõi số lượng truy vấn sau cùng)
-
+    reset_queries() 
     # ----------- LÝ THUYẾT -----------
     # exists(): Kiểm tra xem QuerySet có phần tử nào hay không.
     # -> Trả về True nếu có ít nhất một bản ghi khớp với điều kiện, ngược lại trả về False.
@@ -30,7 +35,6 @@ def main():
     anh_count_book = Book.objects.filter(author__name__icontains="Nguyễn NhậT ÁNH").count()
     print(anh_count_book)  # Ví dụ: 4
 
-    # In ra tổng số truy vấn SQL đã được thực hiện từ đầu chương trình đến giờ
     print("so luong truy van = ", len(connection.queries))
 
 if __name__ == '__main__':

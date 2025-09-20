@@ -1,8 +1,14 @@
 import os
+import sys
 import django
 from django.db import connection, reset_queries
 
-# Thiết lập Django environment (dành cho script chạy ngoài manage.py)
+CURRENT_FILE = os.path.abspath(__file__)
+PROJECT_ROOT = os.path.dirname(os.path.dirname(CURRENT_FILE))
+
+if PROJECT_ROOT not in sys.path:
+    sys.path.append(PROJECT_ROOT)
+
 os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'myapp.settings')
 django.setup()
 
@@ -10,8 +16,6 @@ from books.models import Book
 
 def main():
     print("-" * 40)
-
-    # Reset lại danh sách các truy vấn để đo chính xác số lượng SQL
     reset_queries()
 
     """
@@ -22,7 +26,7 @@ def main():
     books = Book.objects.defer('description')  # Đây là một QuerySet, chưa bị evaluate
 
     # In ra QuerySet (vẫn chưa thực hiện truy vấn SQL)
-    print(books)
+    #print(books)
 
     # Khi bắt đầu lặp qua QuerySet, Django mới thực hiện truy vấn SQL đầu tiên
     # Truy vấn sẽ lấy tất cả các field trừ 'description'

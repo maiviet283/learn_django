@@ -20,6 +20,7 @@
     <tr>
         <th>Tên</th>
         <th>Giá</th>
+        <th>Độ dài thông tin</th>
         <th>Tồn kho</th>
         <th>Hành động</th>
     </tr>
@@ -27,6 +28,7 @@
     <tr>
         <td>{{ product.name }}</td>
         <td>{{ product.price }}</td>
+        <td>{{ product.len_scription }}</td>
         <td>{{ product.stock }}</td>
         <td>
             {% if perms.products.change_product %}

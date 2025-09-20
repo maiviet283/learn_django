@@ -5,6 +5,7 @@ NumPy	Xử lý mảng, tính toán số học nhanh	Làm việc với dữ liệ
 SciPy	Tính toán khoa học nâng cao	Giải phương trình, tối ưu, xử lý tín hiệu, thống kê
 Numba	Tăng tốc code Python JIT	Biên dịch code Python để chạy nhanh hơn nhiều
 
+f
 
 nginx
 gunicorn

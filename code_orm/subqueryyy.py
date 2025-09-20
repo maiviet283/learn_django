@@ -2,6 +2,13 @@ import os
 import django
 from django.db import connection, reset_queries
 from django.db.models import OuterRef, Subquery
+import sys
+
+CURRENT_FILE = os.path.abspath(__file__)
+PROJECT_ROOT = os.path.dirname(os.path.dirname(CURRENT_FILE))
+
+if PROJECT_ROOT not in sys.path:
+    sys.path.append(PROJECT_ROOT)
 
 os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'myapp.settings')
 django.setup()
